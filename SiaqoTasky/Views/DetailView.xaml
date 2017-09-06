@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+    x:Class="SiaqoTasky.Views.DetailView"
+    xmlns:b="clr-namespace:Corcav.Behaviors;assembly=Corcav.Behaviors"
+    Title="{Binding Title}">
+     <b:Interaction.Behaviors>
+        <b:BehaviorCollection>
+            <b:EventToCommand EventName="Disappearing" Command="{Binding DisappearingCommand}" />
+        </b:BehaviorCollection>
+    </b:Interaction.Behaviors>
+    <ContentView>
+	<ContentPage.Content>
+         <TableView Intent="Settings"  >
+                <TableRoot>
+                    <TableSection Title="Task Details">
+                        <EntryCell  Label="Task" Text="{Binding task.TaskName}"></EntryCell>
+                        <SwitchCell Text="Complete" On="{Binding task.TaskComplete}"></SwitchCell>
+                        <EntryCell  Label="Notes" Text="{Binding task.TaskNotes}"></EntryCell>
+                    </TableSection>
+                    </TableRoot>
+            </TableView>
+	</ContentPage.Content>
+        </ContentView>
+</ContentPage>

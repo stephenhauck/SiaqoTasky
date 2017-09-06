@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="SiaqoTasky.Views.MainView"
+    xmlns:b="clr-namespace:Corcav.Behaviors;assembly=Corcav.Behaviors"
+    xmlns:dxGrid="clr-namespace:DevExpress.Mobile.DataGrid;assembly=DevExpress.Mobile.Grid.v17.1"
+    Title="{Binding Title}">
+     <b:Interaction.Behaviors>
+        <b:BehaviorCollection>
+            <b:EventToCommand EventName="Appearing" Command="{Binding AppearingCommand}" />
+        </b:BehaviorCollection>
+    </b:Interaction.Behaviors>
+	<ContentPage.Content>
+        <dxGrid:GridControl x:Name="taskGrid" ItemsSource="{Binding tasks}" IsReadOnly="true" RowTapCommand="{Binding RowTappedCommand}"
+            SelectedDataObject="{Binding SelectedTask, Mode=TwoWay}"> 
+            <dxGrid:GridControl.Columns> 
+                 <dxGrid:TextColumn FieldName="TaskName" Caption = "Task"  /> 
+                 <dxGrid:SwitchColumn FieldName="TaskComplete" Caption="Complete" Width="100" />
+            </dxGrid:GridControl.Columns> 
+        </dxGrid:GridControl> 
+	</ContentPage.Content>
+     <ContentPage.ToolbarItems>
+        <ToolbarItem Name="CreateToDo" Command="{Binding CreateTaskCommand}">
+            <ToolbarItem.Icon>
+                <OnPlatform x:TypeArguments="FileImageSource"
+                    iOS ="Toolbar/plus-simple-7@3x.png"
+                    Android="/Resources/drawable/plus_simple_7.png"
+                    WinPhone="Toolkit.Content/ApplicationBar.Check.png" />
+            </ToolbarItem.Icon>
+            </ToolbarItem>
+    </ContentPage.ToolbarItems>
+</ContentPage>
